@@ -1,0 +1,60 @@
+/* ---- Timeline ---- */
+ol {
+	position: relative;
+	display: block;
+	margin: 10px;
+	height: 6px;
+	padding-left: 30px;
+}
+ol.n1{
+	background: #a21a1a;
+}
+
+ol.n2{
+	background: #1a79a2;
+}
+
+ol.n3{
+	background:  #1aa21a;
+}
+
+/* ---- Timeline elements ---- */
+ol>li {
+	position: relative;
+	display: inline-block;
+	float: left;
+	width: 35px;
+	font: bold 14px arial;
+  	height: 50px;
+}
+li .point {
+	content: "";
+	top: -8px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+    position: absolute;
+}
+
+li .n1{
+	border: 4px solid #a21a1a;
+	background: #a21a1a;
+}
+li .n2{
+	border: 4px solid #1a79a2;
+	background: #1a79a2;
+}
+li .n3{
+	border: 4px solid #1aa21a;
+	background: #1aa21a;
+}
+
+/* ---- Hover effects ---- */
+li:hover {
+	cursor: pointer;
+  	color: black;
+}
+li:hover .description {
+  display: block;
+}

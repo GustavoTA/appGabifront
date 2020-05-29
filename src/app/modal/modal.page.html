@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Quem sou eu?</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Meu Cadastro</ion-card-title>
+    </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="meuForm" (submit)="gravarNome()">
+          <div class="form-group">
+            <label for="nome">Meu Nome</label>
+            <input type="text" class="form-control" formControlName="nome" id="nome" aria-describedby="nomeHelp" placeholder="Informe um nome">
+            <small id="nomeHelp" class="form-text text-muted">Insira um nome para te conhecermos.</small>
+          </div>
+          <div class="form-group">
+            <label for="nome">Meu Apelido</label>
+            <input type="text" class="form-control" formControlName="apelido" id="apelido" aria-describedby="apelidoHelp" placeholder="Informe um apelido">
+            <small id="apelidoHelp" class="form-text text-muted">Como você gostaria de ser chamado?</small>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="meuForm.invalid">Vamos Jogar</button>
+        </form>        
+      </ion-card-content>
+  </ion-card>
+
+</ion-content>

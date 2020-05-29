@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ola, {{user?.apelido}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title>Ola, {{user?.apelido}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <div class="container text-white mt-3">
+      <div class="row">
+        <div class="col-4"><p>Nivel 1</p></div>
+        <div class="col-7">
+          <ol class="n1">
+            <li>
+              <span class="point n1" [routerLink]="['../pergunta']" ></span>
+            </li>
+            <li>
+              <span class="point n1"></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4"><p>Nivel 2</p></div>
+        <div class="col-7">
+          <ol class="n2">
+            <li>
+              <span class="point n2"></span>
+            </li>
+            <li>
+              <span class="point n2"></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4"><p>Nivel 3</p></div>
+        <div class="col-7">
+          <ol class="n3">
+            <li>
+              <span class="point n3"></span>
+            </li>
+            <li>
+              <span class="point n3"></span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
