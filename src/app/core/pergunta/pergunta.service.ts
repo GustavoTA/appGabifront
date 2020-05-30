@@ -11,6 +11,7 @@ const URL_API = 'https://appgabi.herokuapp.com/perguntas/';
 export class PerguntaService {
 
   private subject = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient) { }
 
   // private carregarPerguntas(){
@@ -21,6 +22,14 @@ export class PerguntaService {
 
   pegarPerguntas(){
     return this.http.get(URL_API);
+  }
+
+  pegarPerguntaNivel(nivel){
+    return this.http.get(URL_API + '/nivel/' + nivel );
+  }
+
+  pegarPergunta(id){
+    return this.http.get(URL_API + '/id/' + id );
   }
 
 }

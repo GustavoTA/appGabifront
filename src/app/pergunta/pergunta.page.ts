@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../core/pergunta/pergunta.service';
 import { Pergunta } from '../core/pergunta/pergunta';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pergunta',
@@ -14,15 +15,14 @@ export class PerguntaPage implements OnInit {
   private pergunta: Pergunta;
 
   constructor(
-    private perguntaService: PerguntaService
-  ) {
-    this.exibirPergunta();
-  }
+    private perguntaService: PerguntaService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  exibirPergunta(){
+  exibirPergunta(id){
     let pResp;
     this.perguntaService
-      .pegarPerguntas()
+      .pegarPergunta(id)
       .subscribe(data => {
         pResp = data;
         this.pergunta = pResp.data;
@@ -31,6 +31,8 @@ export class PerguntaPage implements OnInit {
 
 
   ngOnInit() {
+    const perguntaId = this.activatedRoute.snapshot.params.id;
+    this.exibirPergunta(perguntaId);
   }
 
 }

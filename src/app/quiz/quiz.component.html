@@ -19,12 +19,9 @@
       <div class="row">
         <div class="col-4"><p>Nivel 1</p></div>
         <div class="col-7">
-          <ol class="n1">
-            <li>
-              <span class="point n1" [routerLink]="['../pergunta']" ></span>
-            </li>
-            <li>
-              <span class="point n1"></span>
+          <ol class="n1" *ngFor = "let n1 of pergunta">
+            <li *ngIf="n1.nivel == 1">
+              <span class="point n1" [routerLink]="['../pergunta/' + n1._id]" ></span>
             </li>
           </ol>
         </div>
@@ -32,12 +29,9 @@
       <div class="row">
         <div class="col-4"><p>Nivel 2</p></div>
         <div class="col-7">
-          <ol class="n2">
-            <li>
-              <span class="point n2"></span>
-            </li>
-            <li>
-              <span class="point n2"></span>
+          <ol class="n2" *ngFor = "let n2 of pergunta">
+            <li *ngIf="n2.nivel == 2">
+              <span class="point n2" [routerLink]="['../pergunta/' + n2._id]"></span>
             </li>
           </ol>
         </div>
@@ -45,12 +39,9 @@
       <div class="row">
         <div class="col-4"><p>Nivel 3</p></div>
         <div class="col-7">
-          <ol class="n3">
-            <li>
-              <span class="point n3"></span>
-            </li>
-            <li>
-              <span class="point n3"></span>
+          <ol class="n3" *ngFor = "let n3 of pergunta">
+            <li *ngIf="n3.nivel == 3">
+              <span class="point n3" [routerLink]="['../pergunta/' + n3._id]" ></span>
             </li>
           </ol>
         </div>
