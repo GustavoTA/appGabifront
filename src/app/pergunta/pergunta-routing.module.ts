@@ -5,7 +5,7 @@ import { PerguntaPage } from './pergunta.page';
 
 const routes: Routes = [
   {
-    path: '/:id',
+    path: 'id/:id',
     component: PerguntaPage
   }
 ];
