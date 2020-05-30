@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerguntaService } from '../core/pergunta/pergunta.service';
-// import { BehaviorSubject } from 'rxjs';
-// import { Pergunta } from '../core/pergunta/pergunta';
-// import { PerguntaService } from '../core/pergunta/pergunta.service';
+import { Pergunta } from '../core/pergunta/pergunta';
 
 @Component({
   selector: 'app-pergunta',
@@ -13,20 +11,23 @@ import { PerguntaService } from '../core/pergunta/pergunta.service';
 export class PerguntaPage implements OnInit {
 
   // @Input() pergunta = '';
-  // private pergunta$ = new BehaviorSubject<any>(null);
-  // private pergunta: Pergunta ;
+  private pergunta: Pergunta;
 
   constructor(
     private perguntaService: PerguntaService
   ) {
-
+    this.exibirPergunta();
   }
 
-  // exibirPergunta(){
-  //   this.perguntaService.pegarPerguntas().subscribe(perguntas => {
-  //     console.log(perguntas);
-  //   });
-  // }
+  exibirPergunta(){
+    let pResp;
+    this.perguntaService
+      .pegarPerguntas()
+      .subscribe(data => {
+        pResp = data;
+        this.pergunta = pResp.data;
+      });
+  }
 
 
   ngOnInit() {
