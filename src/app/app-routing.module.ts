@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'pergunta',
     loadChildren: () => import('./pergunta/pergunta.module').then( m => m.PerguntaPageModule)
+  },
+  {
+    path: 'load',
+    loadChildren: () => import('./core/load/load.module').then( m => m.LoadPageModule)
   }
 ];
 
