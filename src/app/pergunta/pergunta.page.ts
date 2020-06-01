@@ -39,6 +39,12 @@ export class PerguntaPage implements OnInit {
     });
     const perguntaId = this.activatedRoute.snapshot.params.id;
     this.exibirPergunta(perguntaId);
+    if(perguntaService.hasPergunta(perguntaId)){
+      let opcaoStorage = perguntaService.getSubjectResposta(perguntaId);
+      opcaoStorage.subscribe(opcao =>{
+        this.jaRespondida(opcao);
+      })
+    }
   }
 
   exibirPergunta(id){
@@ -67,6 +73,7 @@ export class PerguntaPage implements OnInit {
       $("#"+alternativa._id).next().addClass('text-danger');
       this.marcarAlternativaCorreta();
     }
+    this.perguntaService.gravarResposta(this.pergunta._id, alternativa._id);
     this.justi = true;
   }
 
@@ -86,6 +93,23 @@ export class PerguntaPage implements OnInit {
         $("#"+el._id).next().addClass('text-success');
       }
     })
+  }
+
+  marcarOpcao(idOpcao){
+    let opcao;
+    this.pergunta.alternativa.forEach(el => { if (el._id === idOpcao){ opcao = el; }});
+    return opcao;
+  }
+
+  jaRespondida(idOpcao){
+    let opcao;
+    opcao = this.marcarOpcao(idOpcao);
+    if(opcao.correto){
+      $("#"+el._id).next().addClass('text-success');
+    }else{
+      $("#"+el._id).next().addClass('text-danger');
+      this.marcarAlternativaCorreta();
+    }
   }
 
   ngOnInit() { }

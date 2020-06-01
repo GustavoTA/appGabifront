@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { Storage } from '@ionic/storage';
 
 const URL_API = 'https://appgabi.herokuapp.com/perguntas/';
 
@@ -12,7 +13,7 @@ export class PerguntaService {
 
   private subject = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storage: Storage) { }
 
   // private carregarPerguntas(){
   //   let ret;
@@ -30,6 +31,21 @@ export class PerguntaService {
 
   pegarPergunta(id){
     return this.http.get(URL_API + '/id/' + id );
+  }
+
+  gravarResposta(idPergunta, idResposta){
+    this.storage.set(idPergunta, idResposta);
+  }
+
+  getSubjectResposta(idPergunta){
+    const pergunta = this.storage.get(idPergunta);
+    let subPergunta = new BehaviorSubject<any>(null);
+    subPergunta.next(pergunta);
+    return subPergunta;
+  }
+
+  hasPergunta(idPergunta){
+    return !! this.storage.get(idPergunta);
   }
 
 }

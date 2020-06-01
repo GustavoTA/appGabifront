@@ -1,4 +1,5 @@
 export class Pergunta{
+    _id: number;
     nivel: number;
     pergunta: string;
     alternativa: [Alternativa];
