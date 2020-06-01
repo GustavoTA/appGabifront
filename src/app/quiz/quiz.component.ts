@@ -22,10 +22,6 @@ export class QuizComponent implements OnInit {
     private userService: UserService,
     private perguntaService: PerguntaService,
     private modal: ModalController) {
-    this.userService.getUser()
-      .subscribe(resp => {
-        resp.then(user =>  this.user = user);
-      });
     this.meuModal = this.modal.create({component: LoadPage});
   }
 
@@ -46,7 +42,20 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getUser()
+      .subscribe(resp => {
+        console.log(resp.moeda);
+        resp.then(user =>  this.user = user);
+      });
     this.pegarPerguntaNiveis();
+  }
+
+  ngOnChange(){
+    this.userService.getUser()
+      .subscribe(resp => {
+        console.log(resp.moeda);
+        resp.then(user =>  this.user = user);
+      });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { User } from './user';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class UserService {
   insert(user: User){
     this.storage.set('user', user);
   }
-  update(key: string, user: User) {
-    return this.save(key, user);
+  update(user: User) {
+    return this.save('user', user);
   }
 
   private save(key: string, user: User) {

@@ -3,6 +3,7 @@ export class Pergunta{
     pergunta: string;
     alternativa: [Alternativa];
     justificativa: string;
+    moeda: number;
 }
 
 export class Alternativa{
