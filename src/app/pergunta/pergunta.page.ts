@@ -39,19 +39,22 @@ export class PerguntaPage implements OnInit {
     });
     const perguntaId = this.activatedRoute.snapshot.params.id;
     this.exibirPergunta(perguntaId);
-    if(perguntaService.hasPergunta(perguntaId)){
-      let opcaoStorage = perguntaService.getSubjectResposta(perguntaId);
-      opcaoStorage.subscribe(opcao =>{
-        this.jaRespondida(opcao);
-      })
-    }
   }
 
   exibirPergunta(id){
     let pResp;
     this.perguntaService.pegarPergunta(id)
       .subscribe(data => {
-        pResp = data; this.pergunta = pResp;
+        pResp = data;
+        this.pergunta = pResp;
+
+        let opcao = this.perguntaService.getSubjectResposta(pResp._id);
+        opcao.then(val => {
+          if(!!val){
+            this.jaRespondida(val);
+          }
+        });
+
         this.modalCarregar.then(modalLoad => {
           modalLoad.dismiss();
         });
@@ -63,7 +66,6 @@ export class PerguntaPage implements OnInit {
     let alternativa;
     opcaoV = this.formResposta.get('opcao').value;
     alternativa = this.pegarValorOpcao(opcaoV);
-    // console.log(alternativa);
     if (alternativa.correto){
       $("#"+alternativa._id).next().addClass('text-success');
       this.userService.getUser().subscribe(user =>{
@@ -104,12 +106,13 @@ export class PerguntaPage implements OnInit {
   jaRespondida(idOpcao){
     let opcao;
     opcao = this.marcarOpcao(idOpcao);
-    if(opcao.correto){
-      $("#"+el._id).next().addClass('text-success');
+    if (opcao.correto){
+      $("#"+ opcao._id).next().addClass('text-success');
     }else{
-      $("#"+el._id).next().addClass('text-danger');
+      $("#"+ opcao._id).next().addClass('text-danger');
       this.marcarAlternativaCorreta();
     }
+    this.justi = true;
   }
 
   ngOnInit() { }

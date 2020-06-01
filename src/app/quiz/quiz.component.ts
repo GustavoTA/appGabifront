@@ -44,8 +44,7 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser()
       .subscribe(resp => {
-        console.log(resp.moeda);
-        resp.then(user =>  this.user = user);
+        resp.then(user =>  { this.user = user});
       });
     this.pegarPerguntaNiveis();
   }

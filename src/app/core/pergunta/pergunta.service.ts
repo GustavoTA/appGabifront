@@ -35,17 +35,12 @@ export class PerguntaService {
 
   gravarResposta(idPergunta, idResposta){
     this.storage.set(idPergunta, idResposta);
+    this.storage.get(idPergunta).then(val => console.log(val));
   }
 
   getSubjectResposta(idPergunta){
     const pergunta = this.storage.get(idPergunta);
-    let subPergunta = new BehaviorSubject<any>(null);
-    subPergunta.next(pergunta);
-    return subPergunta;
-  }
-
-  hasPergunta(idPergunta){
-    return !! this.storage.get(idPergunta);
+    return pergunta;
   }
 
 }

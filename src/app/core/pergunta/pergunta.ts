@@ -1,5 +1,5 @@
 export class Pergunta{
-    _id: number;
+    _id: string;
     nivel: number;
     pergunta: string;
     alternativa: [Alternativa];
