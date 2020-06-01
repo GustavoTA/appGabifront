@@ -40,6 +40,13 @@ export class UserService {
   }
 
   updateMoeda(val){
+    console.log(val);
     this.storage.set('moeda', val);
+    this.storage.get('moeda').then(moeda => console.log(moeda));
+  }
+
+  getMoeda(){
+    this.storage.get('moeda').then(moeda => console.log(moeda));
+    return this.storage.get('moeda');
   }
 }

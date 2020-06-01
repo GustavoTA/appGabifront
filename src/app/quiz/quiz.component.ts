@@ -14,7 +14,7 @@ import { LoadPage } from '../core/load/load.page';
 export class QuizComponent implements OnInit {
 
   user: User;
-
+  moeda: Number;
   meuModal;
   pergunta: Pergunta;
 
@@ -23,6 +23,7 @@ export class QuizComponent implements OnInit {
     private perguntaService: PerguntaService,
     private modal: ModalController) {
     this.meuModal = this.modal.create({component: LoadPage});
+    this.userService.getMoeda().then(moedas => this.moeda = moedas);
   }
 
   pegarPerguntaNiveis(){
@@ -52,9 +53,10 @@ export class QuizComponent implements OnInit {
   ngOnChange(){
     this.userService.getUser()
       .subscribe(resp => {
-        console.log(resp.moeda);
         resp.then(user =>  this.user = user);
       });
+    this.userService.getMoeda().then(moedas => this.moeda = moedas);
+
   }
 
 }

@@ -68,8 +68,9 @@ export class PerguntaPage implements OnInit {
     alternativa = this.pegarValorOpcao(opcaoV);
     if (alternativa.correto){
       $("#"+alternativa._id).next().addClass('text-success');
-      this.userService.getUser().subscribe(user =>{
-        user.moeda += this.pergunta.moeda;
+      this.userService.getMoeda().then(moeda =>{
+        moeda += this.pergunta.moeda;
+        this.userService.updateMoeda(moeda);
       });
     }else{
       $("#"+alternativa._id).next().addClass('text-danger');
