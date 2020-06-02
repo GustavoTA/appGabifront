@@ -14,7 +14,7 @@ import { LoadPage } from '../core/load/load.page';
 export class QuizComponent implements OnInit {
 
   user: User;
-  moeda: Number;
+  moeda: number;
   meuModal;
   pergunta: Pergunta;
 
@@ -45,20 +45,10 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser()
       .subscribe(resp => {
-        resp.then(user =>  { this.user = user});
+        resp.then(meuUser =>  { this.user = meuUser });
       });
     this.pegarPerguntaNiveis();
   }
-
-  ngOnChange(){
-    this.userService.getUser()
-      .subscribe(resp => {
-        resp.then(user =>  this.user = user);
-      });
-    this.userService.getMoeda().then(moedas => this.moeda = moedas);
-
-  }
-
   ionViewDidLeave(){
     this.userService.getMoeda().then(moedas => this.moeda = moedas);
   }
