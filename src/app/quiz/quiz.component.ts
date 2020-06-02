@@ -59,4 +59,8 @@ export class QuizComponent implements OnInit {
 
   }
 
+  ionViewDidLeave(){
+    this.userService.getMoeda().then(moedas => this.moeda = moedas);
+  }
+
 }
